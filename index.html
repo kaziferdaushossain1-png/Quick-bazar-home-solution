@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Bazar Home Solution | আধুনিক স্যানিটারি শপ</title>
+    
+    <meta name="description" content="Quick Bazar Home Solution - সেরা স্যানিটারি ফিটিংস এবং আধুনিক হোম সলিউশন।">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-red: #d63031;
+            --brand-dark: #1a1a1a;
+            --bg: #f4f7f6;
+        }
+
+        body { font-family: 'Arial', sans-serif; background: var(--bg); margin: 0; transition: 0.3s; }
+        
+        /* হেডার ব্র্যান্ডিং */
+        header { 
+            background: var(--brand-dark); color: white; padding: 25px; 
+            text-align: center; border-bottom: 5px solid var(--brand-red);
+        }
+        .logo { font-size: 30px; font-weight: 900; letter-spacing: 2px; }
+        .logo span { color: var(--brand-red); }
+        .tagline { font-size: 14px; color: #ccc; letter-spacing: 3px; margin-top: 5px; }
+
+        /* অফার বার */
+        .offer-bar { background: var(--brand-red); color: white; padding: 10px 0; overflow: hidden; font-weight: bold; }
+        .marquee { display: inline-block; white-space: nowrap; animation: scroll 20s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* কন্টেইনার */
+        .container { max-width: 1200px; margin: 20px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 15px; }
+        
+        /* প্রোডাক্ট কার্ড */
+        .card { 
+            background: white; border-radius: 20px; padding: 15px; position: relative; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); }
+
+        /* হার্টবিট অফার */
+        .badge {
+            position: absolute; top: 10px; right: 10px; background: var(--brand-red); 
+            color: white; width: 55px; height: 55px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 12px; font-weight: bold; animation: heart 1.3s infinite; z-index: 10;
+        }
+        @keyframes heart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+        .img-box { width: 100%; height: 220px; border-radius: 15px; overflow: hidden; }
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; cursor: zoom-in; }
+        .card:hover img { transform: scale(1.2); }
+
+        /* কাউন্টার (জিরো থেকে শুরু) */
+        .counter { display: flex; align-items: center; justify-content: center; gap: 15px; background: #f1f2f6; border-radius: 30px; margin: 15px 0; padding: 5px; }
+        .count-btn { background: var(--brand-dark); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 20px; }
+        .q-val { font-size: 20px; font-weight: bold; min-width: 20px; text-align: center; }
+
+        .price { font-size: 24px; font-weight: bold; color: var(--brand-red); margin: 5px 0; }
+        .old-price { font-size: 14px; text-decoration: line-through; color: #999; }
+
+        /* বাটনসমূহ */
+        .btn { display: block; text-align: center; padding: 12px; margin-top: 10px; border-radius: 10px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-bkash { background: #e2136e; color: white; }
+        .btn-wa { background: #25D366; color: white; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* সোশ্যাল ফ্লোটিং */
+        .social-tools { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 8px; z-index: 10; }
+        .s-link { background: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">QUICK <span>BAZAR</span></div>
+    <div class="tagline">HOME SOLUTION</div>
+</header>
+
+<div class="offer-bar">
+    <div class="marquee">🔥 কুইক বাজার হোম সলিউশন মেগা সেল! ২০% নগদ ছাড়! 🔥 সরাসরি হোয়াটসঅ্যাপে অর্ডার দিন! 🔥</div>
+</div>
+
+<div class="container" id="product-list">তথ্য লোড হচ্ছে...</div>
+
+<script>
+    const sheetId = '1cH7KsBpVu5NSaFrff2_Ac0cqoa3jXmQT2pT7fDk5DT8';
+    const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
+
+    function changeQty(id, delta) {
+        let qty = document.getElementById('q-'+id);
+        let val = parseInt(qty.innerText) + delta;
+        if (val < 0) val = 0; // জিরো থেকে শুরু হবে
+        qty.innerText = val;
+    }
+
+    function sendWA(name, id) {
+        let q = document.getElementById('q-'+id).innerText;
+        if(q == 0) {
+            alert("অনুগ্রহ করে অন্তত ১টি পরিমাণ সিলেক্ট করুন!");
+            return;
+        }
+        const msg = `আসসালামু আলাইকুম, আমি কুইক বাজার হোম সলিউশন থেকে ${q} টি ${name} অর্ডার করতে চাই।`;
+        window.open(`https://wa.me/8801700000000?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    async function loadShop() {
+        const response = await fetch(csvUrl);
+        const text = await response.text();
+        const rows = text.split('\n').slice(1);
+        const area = document.getElementById('product-list');
+        area.innerHTML = '';
+
+        rows.forEach((row, i) => {
+            const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if(cols.length >= 2) {
+                const name = cols[0].replace(/"/g, '');
+                const price = parseInt(cols[1].replace(/"/g, ''));
+                const img = cols[3] && cols[3].length > 10 ? cols[3].replace(/"/g, '') : 'https://picsum.photos/400/300?random='+i;
+                
+                area.innerHTML += `
+                    <div class="card">
+                        <div class="badge">২০%<br>ছাড়</div>
+                        <div class="social-tools">
+                            <a href="#" class="s-link" style="color:#1877F2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="s-link" style="color:#E1306C"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="s-link" style="color:#000"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                        <div class="img-box"><img src="${img}"></div>
+                        <h3 style="margin: 15px 0 5px;">${name}</h3>
+                        <div class="price">৳${Math.floor(price*0.8)} <span class="old-price">৳${price}</span></div>
+                        
+                        <div class="counter">
+                            <button class="count-btn" onclick="changeQty(${i}, -1)">-</button>
+                            <span class="q-val" id="q-${i}">0</span>
+                            <button class="count-btn" onclick="changeQty(${i}, 1)">+</button>
+                        </div>
+
+                        <a href="tel:01700000000" class="btn btn-bkash"><i class="fas fa-credit-card"></i> বিকাশ পেমেন্ট</a>
+                        <a href="javascript:void(0)" onclick="sendWA('${name}', ${i})" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp অর্ডার</a>
+                    </div>`;
+            }
+        });
+    }
+    loadShop();
+</script>
+
+</body>
+</html>
