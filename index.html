@@ -15,7 +15,7 @@
         /* ওপরের স্ক্রলিং নোটিশ */
         .scrolling-notice {
             background: var(--brand-red); color: white;
-            padding: 12px 0; font-weight: bold; font-size: 20px;
+            padding: 10px 0; font-weight: bold; font-size: 18px;
             white-space: nowrap; overflow: hidden;
         }
         .scrolling-notice span {
@@ -24,81 +24,93 @@
         }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* হেডার ও সেন্টার লোগো */
-        header { background: #fff; padding: 30px 20px; text-align: center; border-bottom: 4px solid var(--brand-red); }
-        .logo { 
-            font-size: 50px; font-weight: 900; color: var(--brand-dark); 
-            text-decoration: none; display: inline-block;
-            animation: logoHeart 2s infinite; 
+        /* লোগো সেকশন - এখানে তোর চাওয়া অনুযায়ী ঠিক করা হয়েছে */
+        header { 
+            background: #fff; 
+            padding: 30px 15px; 
+            text-align: center; 
+            border-bottom: 4px solid var(--brand-red);
         }
-        .logo span { color: var(--brand-red); }
-        @keyframes logoHeart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        
+        .logo-wrap {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            animation: heartBeat 2s infinite; /* লোগোর হার্টবিট অ্যানিমেশন */
+        }
 
-        /* ছোট ভিডিও ও সার্চ */
-        .video-container { max-width: 350px; margin: 20px auto; }
+        .logo-main { 
+            font-size: 50px; /* লোগোর সাইজ সামঞ্জস্যপূর্ণ করা হয়েছে */
+            font-weight: 900; 
+            color: var(--brand-dark); 
+            text-decoration: none;
+            line-height: 1;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .logo-main span { color: var(--brand-red); }
+        
+        .logo-sub { 
+            font-size: 20px; 
+            color: #636e72; 
+            letter-spacing: 6px; 
+            font-weight: bold;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        /* ভিডিও ও অন্যান্য সেকশন */
+        .video-container { max-width: 320px; margin: 20px auto; }
         .video-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         .search-area { max-width: 800px; margin: 20px auto; padding: 0 15px; }
         #search { width: 100%; padding: 15px 25px; border-radius: 30px; border: 2px solid #ddd; outline: none; font-size: 16px; }
 
-        /* কার্ড গ্রিড */
-        .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 25px; padding: 20px; }
+        /* কার্ড ও অফার ব্যাজ */
+        .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 20px; }
+        .card { background: white; border-radius: 20px; padding: 20px; position: relative; box-shadow: 0 8px 20px rgba(0,0,0,0.05); overflow: visible; }
         
-        .card { 
-            background: white; border-radius: 20px; padding: 20px; 
-            position: relative; box-shadow: 0 8px 20px rgba(0,0,0,0.05); 
-            transition: 0.3s; overflow: visible; /* অফার ব্যাজ দেখানোর জন্য */
-        }
-        .card:hover { transform: translateY(-8px); }
-
-        /* কার্ডের ওপরের ডান কোণায় ২০% ছাড় ব্যাজ */
-        .card-offer-badge {
+        .card-offer {
             position: absolute; top: -10px; right: -10px;
             background: var(--brand-red); color: white;
             padding: 8px 15px; border-radius: 10px;
-            font-size: 16px; font-weight: bold; z-index: 10;
-            animation: badgeHeart 1.5s infinite;
-            box-shadow: 0 4px 10px rgba(214, 48, 49, 0.4);
+            font-size: 14px; font-weight: bold; z-index: 10;
+            animation: badgeShake 1.5s infinite;
         }
-        @keyframes badgeHeart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        @keyframes badgeShake { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
-        /* সোশ্যাল টুলস (বাম পাশে) */
+        /* সোশ্যাল টুলস */
         .card-tools { position: absolute; top: 15px; left: 15px; display: flex; flex-direction: column; gap: 8px; z-index: 5; }
-        .s-link { 
-            background: white; width: 35px; height: 35px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 16px;
-        }
+        .s-link { background: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 16px; }
 
-        .img-box { width: 100%; height: 250px; border-radius: 15px; overflow: hidden; }
+        .img-box { width: 100%; height: 240px; border-radius: 15px; overflow: hidden; }
         .card img { width: 100%; height: 100%; object-fit: cover; }
         
-        .desc { color: #666; font-size: 14px; margin: 10px 0; border-left: 3px solid var(--brand-red); padding-left: 10px; height: 40px; overflow: hidden; }
+        .price { font-size: 24px; font-weight: bold; color: var(--brand-red); margin-top: 10px; }
+        .old { font-size: 14px; text-decoration: line-through; color: #999; margin-left: 8px; }
 
-        .counter { display: flex; align-items: center; justify-content: center; gap: 15px; background: #f1f2f6; border-radius: 30px; margin: 15px 0; padding: 5px; }
-        .c-btn { background: var(--brand-dark); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 20px; }
-        .q-val { font-size: 20px; font-weight: bold; min-width: 30px; text-align: center; }
-
-        .price { font-size: 26px; font-weight: bold; color: var(--brand-red); }
-        .old { font-size: 15px; text-decoration: line-through; color: #999; margin-left: 8px; }
-
-        .btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; margin-top: 8px; border-radius: 12px; text-decoration: none; font-weight: bold; color: white; }
-        .btn-bkash { background: #e2136e; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; margin-top: 10px; border-radius: 12px; text-decoration: none; font-weight: bold; color: white; }
         .btn-wa { background: #25D366; }
-
-        .float-call { position: fixed; bottom: 30px; right: 25px; background: #0984e3; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 1000; animation: pulse 2s infinite; text-decoration: none; }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(9,132,227,0.7); } 70% { box-shadow: 0 0 0 15px rgba(9,132,227,0); } 100% { box-shadow: 0 0 0 0 rgba(9,132,227,0); } }
+        .btn-call { background: #0984e3; }
     </style>
 </head>
 <body>
 
 <div class="scrolling-notice">
-    <span>স্বাগতম কুইক বাজার হোম সলিউশনে! প্রতিটি পণ্যে ২০% ধামাকা ছাড়! যোগাযোগ: ০১৭০০-০০০০০০</span>
+    <span>২০% ধামাকা অফার! কুইক বাজার হোম সলিউশনে আপনাকে স্বাগতম! যোগাযোগ: ০১৭১১-XXXXXX</span>
 </div>
 
 <header>
-    <a href="#" class="logo">QUICK <span>BAZAR</span></a>
+    <div class="logo-wrap">
+        <a href="#" class="logo-main">QUICK <span>BAZAR</span></a>
+        <div class="logo-sub">HOME SOLUTION</div>
+    </div>
 </header>
 
 <div class="video-container">
@@ -114,8 +126,6 @@
 </div>
 
 <div class="container" id="list">লোড হচ্ছে...</div>
-
-<a href="tel:01700000000" class="float-call"><i class="fas fa-phone-alt"></i></a>
 
 <script>
     const sheetId = '1cH7KsBpVu5NSaFrff2_Ac0cqoa3jXmQT2pT7fDk5DT8';
@@ -133,36 +143,26 @@
             if(col.length >= 2) {
                 const name = col[0].replace(/"/g, '');
                 const price = parseInt(col[1].replace(/"/g, ''));
-                const desc = col[2] ? col[2].replace(/"/g, '') : 'সেরা মানের পণ্য।';
-                const img = col[3] && col[3].length > 10 ? col[3].replace(/"/g, '') : 'https://picsum.photos/400/300?random='+i;
+                const img = col[3] ? col[3].replace(/"/g, '') : 'https://picsum.photos/400/300?random='+i;
 
                 area.innerHTML += `
                 <div class="card" data-name="${name.toLowerCase()}">
-                    <div class="card-offer-badge">২০% ছাড়</div>
-                    
+                    <div class="card-offer">২০% ছাড়</div>
                     <div class="card-tools">
-                        <a href="#" class="s-link" style="background:var(--brand-red); color:white;"><i class="fas fa-share-alt"></i></a>
                         <a href="#" class="s-link" style="color:#1877F2"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="s-link" style="color:#E1306C"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="s-link" style="color:#000"><i class="fab fa-tiktok"></i></a>
                     </div>
                     <div class="img-box"><img src="${img}" loading="lazy"></div>
-                    <h3 style="margin:15px 0 5px;">${name}</h3>
-                    <div class="desc">${desc}</div>
+                    <h3 style="margin:15px 0 5px; font-size:20px;">${name}</h3>
                     <div class="price">৳${Math.floor(price*0.8)} <span class="old">৳${price}</span></div>
-                    <div class="counter">
-                        <button class="c-btn" onclick="upd(${i},-1)">-</button>
-                        <span class="q-val" id="q-${i}">0</span>
-                        <button class="c-btn" onclick="upd(${i},1)">+</button>
-                    </div>
-                    <a href="tel:01700000000" class="btn btn-bkash">বিকাশ পেমেন্ট</a>
-                    <a href="https://wa.me/8801700000000?text=অর্ডার: ${name}" target="_blank" class="btn btn-wa">অর্ডার দিন</a>
+                    <a href="https://wa.me/8801700000000?text=অর্ডার: ${name}" target="_blank" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp অর্ডার</a>
+                    <a href="tel:01700000000" class="btn btn-call"><i class="fas fa-phone-alt"></i> কল করুন</a>
                 </div>`;
             }
         });
     }
 
-    function upd(i,d){ let q=document.getElementById('q-'+i); let v=parseInt(q.innerText)+d; if(v>=0) q.innerText=v; }
     function filter() {
         let val = document.getElementById('search').value.toLowerCase();
         let cards = document.getElementsByClassName('card');
