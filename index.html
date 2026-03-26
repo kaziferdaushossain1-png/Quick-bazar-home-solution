@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Bazar Home Solution | ২০% বিশাল ছাড়!</title>
     
+    <title>Quick Bazar Home Solution | ২০% বিশাল ছাড়!</title>
+    <meta name="description" content="কুইক বাজার হোম সলিউশনে সেরা মানের স্যানিটারি পণ্য পান ২০% ছাড়ে।">
+    <meta name="author" content="কাজী ফেরদৌস">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -12,27 +15,33 @@
         * { box-sizing: border-box; }
         body { font-family: 'SolaimanLipi', Arial, sans-serif; background: var(--bg); margin: 0; overflow-x: hidden; }
         
+        /* নোটিশ */
         .scrolling-notice { background: var(--brand-red); color: white; padding: 10px 0; font-weight: bold; font-size: 18px; white-space: nowrap; overflow: hidden; }
         .scrolling-notice span { display: inline-block; padding-left: 100%; animation: marquee 18s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
+        /* হেডার ও লোগো হার্টবিট */
         header { background: #fff; padding: 30px 15px; text-align: center; border-bottom: 4px solid var(--brand-red); }
-        .logo-wrap { display: inline-flex; flex-direction: column; align-items: center; animation: heartBeat 2s infinite; }
-        .logo-main { font-size: 45px; font-weight: 900; color: var(--brand-dark); text-decoration: none; line-height: 1; text-transform: uppercase; }
+        .logo-wrap { display: inline-flex; flex-direction: column; align-items: center; animation: heartBeat 2s infinite; text-decoration: none; }
+        .logo-main { font-size: 45px; font-weight: 900; color: var(--brand-dark); line-height: 1; text-transform: uppercase; margin: 0; }
         .logo-main span { color: var(--brand-red); }
         .logo-sub { font-size: 18px; color: #636e72; letter-spacing: 5px; font-weight: bold; margin-top: 5px; text-transform: uppercase; }
         @keyframes heartBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        .search-area { max-width: 800px; margin: 20px auto; padding: 0 15px; }
-        #search { width: 100%; padding: 15px 25px; border-radius: 30px; border: 2px solid #ddd; outline: none; font-size: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        /* ভিডিও বক্স */
+        .video-container { max-width: 320px; margin: 20px auto; padding: 0 10px; }
+        .video-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid #fff; }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
+        .search-area { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        #search { width: 100%; padding: 15px 25px; border-radius: 30px; border: 2px solid #ddd; outline: none; font-size: 16px; }
+
+        /* কার্ড গ্রিড */
         .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 20px; }
-        
-        /* কার্ড ডিজাইন */
-        .card { background: white; border-radius: 20px; padding: 20px; position: relative; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid #eee; transition: 0.3s; overflow: visible; }
+        .card { background: white; border-radius: 20px; padding: 20px; position: relative; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid #eee; transition: 0.3s; }
         .card:hover { transform: translateY(-8px); }
         
-        .card-offer { position: absolute; top: -10px; right: -10px; background: var(--brand-red); color: white; padding: 8px 15px; border-radius: 10px; font-size: 14px; font-weight: bold; z-index: 10; animation: badgeHeart 1.5s infinite; box-shadow: 0 4px 10px rgba(214,48,49,0.4); }
+        .card-offer { position: absolute; top: -10px; right: -10px; background: var(--brand-red); color: white; padding: 8px 15px; border-radius: 10px; font-size: 14px; font-weight: bold; z-index: 10; animation: badgeHeart 1.5s infinite; }
         @keyframes badgeHeart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
         .card-tools { position: absolute; top: 15px; left: 15px; display: flex; flex-direction: column; gap: 8px; z-index: 5; }
@@ -41,94 +50,99 @@
         .img-box { width: 100%; height: 240px; border-radius: 15px; overflow: hidden; background: #f1f1f1; }
         .card img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* কাউন্টার ডিজাইন */
         .counter { display: flex; align-items: center; justify-content: center; gap: 15px; background: #f8f9fa; border-radius: 30px; margin: 15px 0; padding: 8px; border: 1px solid #eee; }
         .c-btn { background: var(--brand-dark); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; }
-        .q-val { font-size: 22px; font-weight: bold; min-width: 30px; text-align: center; color: var(--brand-dark); }
+        .q-val { font-size: 22px; font-weight: bold; min-width: 30px; text-align: center; }
 
-        .price { font-size: 26px; font-weight: bold; color: var(--brand-red); margin: 10px 0; text-align: center; }
+        .price { font-size: 26px; font-weight: bold; color: var(--brand-red); text-align: center; margin: 10px 0; }
         .old { font-size: 15px; text-decoration: line-through; color: #999; margin-left: 8px; }
 
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; margin-top: 10px; border-radius: 12px; text-decoration: none; font-weight: bold; color: white; font-size: 16px; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; margin-top: 10px; border-radius: 12px; text-decoration: none; font-weight: bold; color: white; }
         .btn-wa { background: #25D366; }
-        .btn-call { background: #0984e3; }
+
+        /* ভাসমান কল বাটন */
+        .float-call { position: fixed; bottom: 30px; right: 25px; background: #0984e3; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 2000; animation: pulse 2s infinite; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(9,132,227,0.7); } 70% { box-shadow: 0 0 0 15px rgba(9,132,227,0); } 100% { box-shadow: 0 0 0 0 rgba(9,132,227,0); } }
     </style>
 </head>
 <body>
 
 <div class="scrolling-notice">
-    <span>কুইক বাজার হোম সলিউশনে আপনাকে স্বাগতম! প্রতিটি পণ্যে ২০% ধামাকা ছাড় চলছে! যোগাযোগ: ০১৭১১-XXXXXX</span>
+    <span>স্বাগতম কুইক বাজার হোম সলিউশনে! প্রতিটি পণ্যে ২০% ধামাকা ছাড়! যোগাযোগ: ০১৭০০-০০০০০০</span>
 </div>
 
 <header>
     <div class="logo-wrap">
-        <a href="#" class="logo-main">QUICK <span>BAZAR</span></a>
+        <h1 class="logo-main">QUICK <span>BAZAR</span></h1>
         <div class="logo-sub">HOME SOLUTION</div>
     </div>
 </header>
 
+<div class="video-container">
+    <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen loading="lazy"></iframe>
+    </div>
+</div>
+
 <div class="search-area">
-    <input type="text" id="search" placeholder="পছন্দের পণ্যটি খুঁজুন..." onkeyup="filter()">
+    <input type="text" id="search" placeholder="পছন্দের মাল খুঁজুন..." onkeyup="filter()">
 </div>
 
 <div class="container" id="list">লোড হচ্ছে...</div>
+
+<a href="tel:01700000000" class="float-call">
+    <i class="fas fa-phone-alt"></i>
+</a>
 
 <script>
     const sheetId = '1cH7KsBpVu5NSaFrff2_Ac0cqoa3jXmQT2pT7fDk5DT8';
     const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
 
     async function loadData() {
-        const res = await fetch(csvUrl);
-        const data = await res.text();
-        const rows = data.split('\n').slice(1);
-        const area = document.getElementById('list');
-        area.innerHTML = '';
+        try {
+            const res = await fetch(csvUrl);
+            const data = await res.text();
+            const rows = data.split('\n').slice(1);
+            const area = document.getElementById('list');
+            area.innerHTML = '';
 
-        rows.forEach((row, i) => {
-            const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            if(col.length >= 2) {
-                const name = col[0].replace(/"/g, '');
-                const price = parseInt(col[1].replace(/"/g, ''));
-                const img = col[3] ? col[3].replace(/"/g, '') : 'https://picsum.photos/400/300?random='+i;
+            rows.forEach((row, i) => {
+                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if(col.length >= 2) {
+                    const name = col[0].replace(/"/g, '');
+                    const price = parseInt(col[1].replace(/"/g, ''));
+                    const img = col[3] ? col[3].replace(/"/g, '') : 'https://picsum.photos/400/300?random='+i;
 
-                area.innerHTML += `
-                <div class="card" data-name="${name.toLowerCase()}">
-                    <div class="card-offer">২০% ছাড়</div>
-                    <div class="card-tools">
-                        <a href="#" class="s-link" style="color:#1877F2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="s-link" style="color:#E1306C"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="s-link" style="color:#000"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                    <div class="img-box"><img src="${img}" loading="lazy"></div>
-                    <h3 style="margin:15px 0 5px; font-size:20px; text-align:center;">${name}</h3>
-                    
-                    <div class="price">৳${Math.floor(price*0.8)} <span class="old">৳${price}</span></div>
-                    
-                    <div class="counter">
-                        <button class="c-btn" onclick="upd(${i},-1)">-</button>
-                        <span class="q-val" id="q-${i}">0</span>
-                        <button class="c-btn" onclick="upd(${i},1)">+</button>
-                    </div>
-
-                    <a href="https://wa.me/8801700000000?text=অর্ডার: ${name}" target="_blank" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp অর্ডার</a>
-                    <a href="tel:01700000000" class="btn btn-call"><i class="fas fa-phone-alt"></i> কল করে অর্ডার</a>
-                </div>`;
-            }
-        });
+                    area.innerHTML += `
+                    <div class="card" data-name="${name.toLowerCase()}">
+                        <div class="card-offer">২০% ছাড়</div>
+                        <div class="card-tools">
+                            <a href="#" class="s-link" style="color:#1877F2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="s-link" style="color:#E1306C"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="s-link" style="color:#000"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                        <div class="img-box"><img src="${img}" alt="${name}" loading="lazy"></div>
+                        <h2 style="margin:15px 0 5px; font-size:18px; text-align:center;">${name}</h2>
+                        <div class="price">৳${Math.floor(price*0.8)} <span class="old">৳${price}</span></div>
+                        
+                        <div class="counter">
+                            <button class="c-btn" onclick="upd(${i},-1)">-</button>
+                            <span class="q-val" id="q-${i}">0</span>
+                            <button class="c-btn" onclick="upd(${i},1)">+</button>
+                        </div>
+                        
+                        <a href="https://wa.me/8801700000000?text=অর্ডার: ${name}" target="_blank" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp অর্ডার</a>
+                    </div>`;
+                }
+            });
+        } catch(e) { console.error("Data load failed"); }
     }
 
-    function upd(i,d){ 
-        let q = document.getElementById('q-'+i); 
-        let v = parseInt(q.innerText) + d; 
-        if(v >= 0) q.innerText = v; 
-    }
-
+    function upd(i,d){ let q=document.getElementById('q-'+i); let v=parseInt(q.innerText)+d; if(v>=0) q.innerText=v; }
     function filter() {
         let val = document.getElementById('search').value.toLowerCase();
         let cards = document.getElementsByClassName('card');
-        for(let c of cards) { 
-            c.style.display = c.getAttribute('data-name').includes(val) ? "block" : "none"; 
-        }
+        for(let c of cards) { c.style.display = c.getAttribute('data-name').includes(val) ? "block" : "none"; }
     }
     loadData();
 </script>
