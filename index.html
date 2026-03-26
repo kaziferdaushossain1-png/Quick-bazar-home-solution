@@ -6,69 +6,95 @@
     
     <title>Quick Bazar Home Solution | ২০% বিশাল ছাড়!</title>
     <meta name="description" content="কুইক বাজার হোম সলিউশনে সেরা মানের স্যানিটারি পণ্য পান ২০% ছাড়ে।">
-    <meta name="author" content="কাজী ফেরদৌস">
-
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root { --brand-red: #d63031; --brand-dark: #2d3436; --bg: #f9f9f9; }
+        :root { 
+            --brand-red: #d63031; 
+            --brand-dark: #2d3436; 
+            --bg: #f1f2f6; 
+            --card-bg: #ffffff;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            /* লোগোর নিচের নতুন ডিজাইনের ব্যাকগ্রাউন্ড */
+            --header-gradient: linear-gradient(135deg, #ffffff 0%, #dfe6e9 100%);
+        }
+
+        /* ডার্ক মোড সেটিংস */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #121212;
+                --card-bg: #1e1e1e;
+                --brand-dark: #ffffff;
+                --text-main: #f1f2f6;
+                --text-sub: #b2bec3;
+                --header-gradient: linear-gradient(135deg, #1e1e1e 0%, #2d3436 100%);
+            }
+            .counter { background: #2d3436 !important; border-color: #444 !important; }
+            #search { background: #1e1e1e; color: white; border-color: #444; }
+        }
+
         * { box-sizing: border-box; }
-        body { font-family: 'SolaimanLipi', Arial, sans-serif; background: var(--bg); margin: 0; overflow-x: hidden; }
+        body { font-family: 'SolaimanLipi', Arial, sans-serif; background: var(--bg); margin: 0; color: var(--text-main); transition: 0.3s; }
         
-        /* নোটিশ */
-        .scrolling-notice { background: var(--brand-red); color: white; padding: 10px 0; font-weight: bold; font-size: 18px; white-space: nowrap; overflow: hidden; }
+        .scrolling-notice { background: var(--brand-red); color: white; padding: 10px 0; font-weight: bold; font-size: 18px; white-space: nowrap; overflow: hidden; position: relative; z-index: 10; }
         .scrolling-notice span { display: inline-block; padding-left: 100%; animation: marquee 18s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* হেডার ও লোগো হার্টবিট */
-        header { background: #fff; padding: 30px 15px; text-align: center; border-bottom: 4px solid var(--brand-red); }
+        /* হেডার ডিজাইন পরিবর্তন করা হয়েছে */
+        header { 
+            background: var(--header-gradient); 
+            padding: 40px 15px; 
+            text-align: center; 
+            border-bottom: 5px solid var(--brand-red);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
         .logo-wrap { display: inline-flex; flex-direction: column; align-items: center; animation: heartBeat 2s infinite; text-decoration: none; }
-        .logo-main { font-size: 45px; font-weight: 900; color: var(--brand-dark); line-height: 1; text-transform: uppercase; margin: 0; }
+        .logo-main { font-size: 48px; font-weight: 900; color: var(--brand-dark); line-height: 1; text-transform: uppercase; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.05); }
         .logo-main span { color: var(--brand-red); }
-        .logo-sub { font-size: 18px; color: #636e72; letter-spacing: 5px; font-weight: bold; margin-top: 5px; text-transform: uppercase; }
+        .logo-sub { font-size: 18px; color: var(--text-sub); letter-spacing: 6px; font-weight: bold; margin-top: 8px; text-transform: uppercase; }
+        
         @keyframes heartBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        /* ভিডিও বক্স */
-        .video-container { max-width: 320px; margin: 20px auto; padding: 0 10px; }
-        .video-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid #fff; }
+        .video-container { max-width: 340px; margin: 25px auto; padding: 0 10px; }
+        .video-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border: 3px solid white; }
         .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         .search-area { max-width: 800px; margin: 20px auto; padding: 0 15px; }
-        #search { width: 100%; padding: 15px 25px; border-radius: 30px; border: 2px solid #ddd; outline: none; font-size: 16px; }
+        #search { width: 100%; padding: 18px 25px; border-radius: 35px; border: 2px solid #ddd; outline: none; font-size: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
-        /* কার্ড গ্রিড */
-        .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 20px; }
-        .card { background: white; border-radius: 20px; padding: 20px; position: relative; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid #eee; transition: 0.3s; }
-        .card:hover { transform: translateY(-8px); }
+        .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 20px; }
+        .card { background: var(--card-bg); border-radius: 25px; padding: 20px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); }
         
-        .card-offer { position: absolute; top: -10px; right: -10px; background: var(--brand-red); color: white; padding: 8px 15px; border-radius: 10px; font-size: 14px; font-weight: bold; z-index: 10; animation: badgeHeart 1.5s infinite; }
-        @keyframes badgeHeart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .card-offer { position: absolute; top: -10px; right: -10px; background: var(--brand-red); color: white; padding: 8px 18px; border-radius: 12px; font-size: 15px; font-weight: bold; z-index: 10; animation: badgePulse 1.5s infinite; box-shadow: 0 4px 12px rgba(214,48,49,0.4); }
+        @keyframes badgePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
 
-        .card-tools { position: absolute; top: 15px; left: 15px; display: flex; flex-direction: column; gap: 8px; z-index: 5; }
-        .s-link { background: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 16px; }
+        .card-tools { position: absolute; top: 15px; left: 15px; display: flex; flex-direction: column; gap: 10px; z-index: 5; }
+        .s-link { background: white; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 3px 8px rgba(0,0,0,0.2); font-size: 18px; }
 
-        .img-box { width: 100%; height: 240px; border-radius: 15px; overflow: hidden; background: #f1f1f1; }
+        .img-box { width: 100%; height: 250px; border-radius: 18px; overflow: hidden; background: #eee; }
         .card img { width: 100%; height: 100%; object-fit: cover; }
         
-        .counter { display: flex; align-items: center; justify-content: center; gap: 15px; background: #f8f9fa; border-radius: 30px; margin: 15px 0; padding: 8px; border: 1px solid #eee; }
-        .c-btn { background: var(--brand-dark); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; }
-        .q-val { font-size: 22px; font-weight: bold; min-width: 30px; text-align: center; }
+        .counter { display: flex; align-items: center; justify-content: center; gap: 15px; background: #f8f9fa; border-radius: 35px; margin: 15px 0; padding: 10px; border: 1px solid #eee; }
+        .c-btn { background: var(--brand-red); color: white; border: none; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 22px; }
+        .q-val { font-size: 24px; font-weight: bold; min-width: 35px; text-align: center; }
 
-        .price { font-size: 26px; font-weight: bold; color: var(--brand-red); text-align: center; margin: 10px 0; }
-        .old { font-size: 15px; text-decoration: line-through; color: #999; margin-left: 8px; }
+        .price { font-size: 28px; font-weight: bold; color: var(--brand-red); text-align: center; margin: 10px 0; }
+        .old { font-size: 16px; text-decoration: line-through; color: #999; margin-left: 8px; }
 
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; margin-top: 10px; border-radius: 12px; text-decoration: none; font-weight: bold; color: white; }
-        .btn-wa { background: #25D366; }
+        .btn-wa { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; margin-top: 10px; border-radius: 15px; text-decoration: none; font-weight: bold; color: white; background: #25D366; font-size: 17px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
 
-        /* ভাসমান কল বাটন */
-        .float-call { position: fixed; bottom: 30px; right: 25px; background: #0984e3; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 2000; animation: pulse 2s infinite; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(9,132,227,0.7); } 70% { box-shadow: 0 0 0 15px rgba(9,132,227,0); } 100% { box-shadow: 0 0 0 0 rgba(9,132,227,0); } }
+        .float-call { position: fixed; bottom: 30px; right: 25px; background: #0984e3; color: white; width: 68px; height: 68px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 2000; animation: callPulse 2s infinite; box-shadow: 0 6px 20px rgba(0,0,0,0.3); text-decoration: none; }
+        @keyframes callPulse { 0% { box-shadow: 0 0 0 0 rgba(9,132,227,0.7); } 70% { box-shadow: 0 0 0 20px rgba(9,132,227,0); } 100% { box-shadow: 0 0 0 0 rgba(9,132,227,0); } }
     </style>
 </head>
 <body>
 
 <div class="scrolling-notice">
-    <span>স্বাগতম কুইক বাজার হোম সলিউশনে! প্রতিটি পণ্যে ২০% ধামাকা ছাড়! যোগাযোগ: ০১৭০০-০০০০০০</span>
+    <span>স্বাগতম কুইক বাজার হোম সলিউশনে! প্রতিটি পণ্যে ২০% ধামাকা ছাড় চলছে! যোগাযোগ: ০১৭০০-০০০০০০</span>
 </div>
 
 <header>
@@ -85,14 +111,12 @@
 </div>
 
 <div class="search-area">
-    <input type="text" id="search" placeholder="পছন্দের মাল খুঁজুন..." onkeyup="filter()">
+    <input type="text" id="search" placeholder="পছন্দের স্যানিটারি মাল খুঁজুন..." onkeyup="filter()">
 </div>
 
 <div class="container" id="list">লোড হচ্ছে...</div>
 
-<a href="tel:01700000000" class="float-call">
-    <i class="fas fa-phone-alt"></i>
-</a>
+<a href="tel:01700000000" class="float-call"><i class="fas fa-phone-alt"></i></a>
 
 <script>
     const sheetId = '1cH7KsBpVu5NSaFrff2_Ac0cqoa3jXmQT2pT7fDk5DT8';
@@ -117,12 +141,13 @@
                     <div class="card" data-name="${name.toLowerCase()}">
                         <div class="card-offer">২০% ছাড়</div>
                         <div class="card-tools">
+                            <a href="#" class="s-link" onclick="shareBtn('${name}')" style="color:#d63031"><i class="fas fa-share-alt"></i></a>
                             <a href="#" class="s-link" style="color:#1877F2"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" class="s-link" style="color:#E1306C"><i class="fab fa-instagram"></i></a>
                             <a href="#" class="s-link" style="color:#000"><i class="fab fa-tiktok"></i></a>
                         </div>
                         <div class="img-box"><img src="${img}" alt="${name}" loading="lazy"></div>
-                        <h2 style="margin:15px 0 5px; font-size:18px; text-align:center;">${name}</h2>
+                        <h2 style="margin:18px 0 5px; font-size:19px; text-align:center;">${name}</h2>
                         <div class="price">৳${Math.floor(price*0.8)} <span class="old">৳${price}</span></div>
                         
                         <div class="counter">
@@ -131,7 +156,7 @@
                             <button class="c-btn" onclick="upd(${i},1)">+</button>
                         </div>
                         
-                        <a href="https://wa.me/8801700000000?text=অর্ডার: ${name}" target="_blank" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp অর্ডার</a>
+                        <a href="https://wa.me/8801700000000?text=অর্ডার: ${name}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp অর্ডার</a>
                     </div>`;
                 }
             });
@@ -143,6 +168,11 @@
         let val = document.getElementById('search').value.toLowerCase();
         let cards = document.getElementsByClassName('card');
         for(let c of cards) { c.style.display = c.getAttribute('data-name').includes(val) ? "block" : "none"; }
+    }
+    function shareBtn(name) {
+        if (navigator.share) {
+            navigator.share({ title: 'Quick Bazar', text: name + ' কিনুন ২০% ছাড়ে!', url: window.location.href });
+        } else { alert("লিঙ্ক কপি করুন: " + window.location.href); }
     }
     loadData();
 </script>
